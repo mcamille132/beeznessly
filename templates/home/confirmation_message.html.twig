@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Message bien envoyé{% endblock %}
+
+{% block body %}
+<div class="hr-expert"><hr></div>
+<div class="container pt-5">
+    <div class="jumbotron m-5 color-success">
+        <div class="row align-items-center justify-content-around">
+            <div class="col-xl-6 col-lg-6 col-md-12 col-sm-12 pb-5">
+                <h1 class="pb-4 pl-3">Votre <span class="color-letter"> message</span> a bien été envoyé</h1>
+                <p>Nous vous remercions de nous avoir contacté. Nous vous répondrons dans les plus brefs délais</p>
+                <a href="{{path ('home')}}">
+                    <button type="button" class="btn btn-inscription">Retour à la page d'accueil</button>
+                </a>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-12">
+                <img src="https://i.postimg.cc/g2V6cTsP/Fichier-1-4x.png" class="img-fluid"
+                    alt="Illustration Portfolio Océane Kolau">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-expert"><hr></div>
+{% endblock %}

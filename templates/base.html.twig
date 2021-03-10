@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="{% block metadescription %}{% endblock %}" />
+    <meta property="og:url"
+        content="http://www.nytimes.com/2015/02/19/arts/international/when-great-minds-dont-think-alike.html" />
+    <meta property="og:type" content="siteweb" />
+    <meta property="og:title"
+        content="Beeznessly, la plateforme qui vous met en relation avec des experts du digital" />
+    <meta property="og:description"
+        content="Recherchez et travaillez avec le meilleur expert du digital. 
+Avec Beeznessly vous pouvez contacter les experts gratuitement, et même télécharger leurs livres blancs ! 
+SEO, SEA, Developpement web, communication, webmarketing: la plateforme vous propose toutes les expertises indispensables à votre projet web." />
+    <meta property="og:image" content="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg" />
+
+    <link rel="icon" type="image/png" href="https://i.postimg.cc/MG2dyGb2/logo-type.png" />
+    <title>Beeznessly | {% block title %}{% endblock %}</title>
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Oswald:wght@300;400;500&family=Raleway:wght@200;300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/css/bootstrap-select.min.css"
+        integrity="sha512-ARJR74swou2y0Q2V9k0GbzQ/5vJ2RBSoCWokg4zkfM29Fb3vZEQyv0iWBMW/yvKgyHSR/7D64pFMmU8nYmbRkg=="
+        crossorigin="anonymous" />
+    {% block stylesheets %}
+    {{ encore_entry_link_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+    {% include "navbar.html.twig" %}
+    {% block body %}{% endblock %}
+    {% include "footer.html.twig" %}
+    {{ encore_entry_script_tags('app') }}
+    
+    {% block javascripts %}{% endblock %}   
+</body>
+
+</html>

@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Connexion{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <form method="post">
+                    {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+
+                    {% if app.user %}
+                    <div class="mb-3">
+                        You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                    </div>
+                    {% endif %}
+
+                    <h1 class="color-connexion mb-3">Connectez-vous</h1>
+                    <label for="inputEmail">Email</label>
+                    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control"
+                        required autofocus>
+                    <label for="inputPassword">Mot de passe</label>
+                    <input type="password" name="password" id="inputPassword" class="form-control" required>
+
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+                    <a href="{{ path('app_forgot_password_request') }}">Mot de passe oublié ?</a>
+                    <div class="text-center pt-5">
+                        <button class="btn btn-lg btn-inscription" type="submit">
+                            Connexion
+                        </button>
+                    </div>
+                </form>
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

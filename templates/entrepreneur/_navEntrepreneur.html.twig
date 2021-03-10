@@ -1,0 +1,14 @@
+<ul class="nav justify-content-center mt-5">
+    <li class="nav-item">
+        <a class="nav-link active" href="{{ path('entrepreneur_profil', {'id': user.id}) }}"><button type="button"
+                class="btn btn-inscription ml-5">Mon Profil</a></button>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('entrepreneur_ebook', {'id': user.id}) }}"><button type="button"
+                class="btn btn-inscription ml-5">Mes Ebooks</a></button>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ path('entrepreneur_messagerie', {'id': user.id}) }}"><button type="button"
+                class="btn btn-inscription ml-5">Ma Messagerie</a></button>
+    </li>
+</ul>

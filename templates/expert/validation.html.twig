@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="container">
+  <div class="jumbotron m-5 color-inscription form-bg-login">
+    <div class="row justify-content-around align-items-center">
+      <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+        <h1 class="color-connexion mb-3">Merci pour votre inscription !</h1>
+        <p>Votre compte est en cours de modération par un administrateur.</p>
+          <a href="/"><button type="button" class="btn btn-warning">Page d'accueil</button></a>
+      </div>
+      <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+        {% include 'design_form_yellow.html.twig'%}
+      </div>
+    </div>
+  </div>
+</div>
+<hr class="hr-expert">
+{% endblock %}

@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Infos ebook{% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="mt-2">
+    <h1 class="text-subnav"><span class="color-letter">I</span>nfos téléchargement</h1>
+  </div>
+  <table class="table table-hover table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
+    <thead>
+      <tr>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">N</span>om</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">P</span>rénom</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">E</span>mail</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">D</span>ate</h3>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for entrepreneur in entrepreneurs %}
+      <tr>
+        <td>
+          <p>{{entrepreneur.lastname}}</p>
+        </td>
+        <td>
+          <p>{{entrepreneur.firstname}}</p>
+        </td>
+        <td>
+          <p>{{entrepreneur.email}}</p>
+        </td>
+        <td>
+          <p>{{downloadedAt[entrepreneur.id]|date('d D M Y')}}</p>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <a href="{{ path('expert_ebook') }}">
+    <button type="button" class="btn btn-inscription nav-link">Retour à la liste</button>
+  </a>
+</div>
+<div class="hr-expert mt-5">
+  <hr>
+</div>
+{% endblock %}

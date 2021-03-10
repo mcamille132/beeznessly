@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Editer mon profil {% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+    {{ include('expert/expert_page/_form_expertPage.html.twig', {'button_label': 'Enregistrer'}) }}
+</div>
+<div class="hr-expert mt-5">
+    <hr>
+</div>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reset your password{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="row">
+        <div class="col-sm-12">
+            {% for label, messages in app.flashes %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ label }}">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% for flashError in app.flashes('reset_password_error') %}
+<div class="alert alert-danger" role="alert">{{ flashError }}</div>
+{% endfor %}
+<div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <h1 class="color-connexion mb-3">Réinitialiser votre mot de passe</h1>
+                {{ form_start(requestForm) }}
+                {{ form_row(requestForm.email) }}
+                <div>
+                    <small>
+                        Entrez l'email avec lequel vous êtes inscrit, nous vous enverrons un lien de réinitialisation.
+                    </small>
+                </div>
+
+                <button class="btn btn-primary m-3">Réinitialiser</button>
+                {{ form_end(requestForm) }}
+
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

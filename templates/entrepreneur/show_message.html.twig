@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Messages {% endblock %}
+
+{% block body %}
+{{ include('entrepreneur/_navEntrepreneur.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <h3 class="text-subnav"><span class="color-letter">D</span>e</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{ contact.user.firstname }} {{ contact.user.lastname }}
+    </div>
+  </div>
+  <div class="card-deck">
+    {% if contact.user.companyName is not empty %}
+    <div class="card alert mb-3 rounded-pill">
+      {{ contact.user.companyName }}
+    </div>
+    {% endif %}
+    <div class="card alert mb-3 rounded-pill">
+      {{ contact.user.provider }}
+    </div>
+  </div>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.user.email}}
+    </div>
+  </div>
+  <h3 class="text-subnav"><span class="color-letter">S</span>ujet</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.subject}}
+    </div>
+  </div>
+  <h3 class="text-subnav"><span class="color-letter">M</span>essage</h3>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{contact.message}}
+    </div>
+  </div>
+  <p class="text-right">Reçu le {{contact.createdAt|date('d M Y')}} </p>
+  <a href="{{ path('entrepreneur_messagerie')}}">
+    <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
+  </a>
+</div>
+<div class="hr-expert mt-5">
+  <hr>
+</div>
+{% endblock %}

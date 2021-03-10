@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{% if user.companyName is not empty %}
+{{user.companyName}}
+{% else %}
+{{user.firstname }} {{user.lastname}}
+{% endif %} 
+{{user.provider}}
+{% endblock %}
+
+{% block metadescription %}
+Voir le profil de 
+{% if user.companyName is not empty %}
+{{user.companyName}}
+{% else %}
+{{user.firstname }} {{user.lastname}}
+{% endif %},
+{{user.provider}}. Avec Beeznessly, téléchargez des livres blancs, trouvez et collaborez avec les meilleurs experts du digital. 
+{% endblock %}
+{% block body %}
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10 p-4">
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-lg-5 p-md-5 p-sm-0">
+    <div class="row">
+        <div class="col-md-2 pt-3">
+            <div class="filter">
+                {% if user.logo is empty %}
+                    <p class="logo-default">LOGO</p>
+                    <img id='logo' src="https://i.postimg.cc/MG2dyGb2/logo-type.png" class="img-fluid" alt="logo de l'entreprise">
+                {% else %}
+                    <img id='logo' src="/uploads/logo/{{ user.logo }}" class="img-fluid" alt="logo de l'entreprise {{user.firstname}}">
+                {% endif %}
+                <h4 class="mt-5"><span class="color-letter"> A </span><a href="#A PROPOS DE NOUS"
+                        style="color:#000000;">propos de
+                        nous</a></h4>
+                <hr class="hr-expert">
+                {% if user.ebooks is not empty %}
+                <h4><span class="color-letter"> N</span><a href="#E-BOOKS" style="color:#000000;">os E-Books</a></h4>
+                <hr class="hr-expert">
+                {% endif %}
+                <h4 class="pb-5"><span class="color-letter"> C</span><a href="#CONTACTEZ NOUS"
+                        style="color:#000000;">ontactez cet
+                        expert</a></h4>
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+        <div class="col-lg-10 col-md-10 col-sm-12 mx-auto">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                {% if user.banner is empty %}
+                                <img id="banner_picture" class="img-fluid" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                                    alt="Banner picture">
+                                {% else %}
+                                <img id="banner_picture" class="img-fluid" src="/uploads/banner/{{ user.banner }}"
+                                    alt="Banner picture">
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 col-sm-12">
+                <div class="pt-4 pb-3">
+                    {% if user.companyName is not empty %}
+                    <h1 class="name-expert-show"> {{user.companyName}}</h1>
+                    {% else %}
+                    <h1 class="name-expert-show"> {{user.firstname }} {{user.lastname}}</h1>
+                    {% endif %}
+                    <div class="row pb-3 pl-3">
+                        {% if user.town is not empty %}
+                        <p class="pr-4"><i class="fas fa-map-marker-alt color-icon-grey"></i> {{user.town}}</p>
+                        {% endif %}
+                        {% for expertise in user.expertise %}
+                        <p class="pr-4 "><i class="fas fa-check color-icon-blue"></i> {{expertise.name}}</p>
+                        {% endfor %}
+                    </div>
+                </div>
+                <section id="A PROPOS DE NOUS">
+                    <div>
+                        <h2>A PROPOS DE NOUS</h2>
+                        <hr class="hr-expert"><br>
+                    </div>
+                    <div class="pt-5 mt-4">
+                        <div class="container-fluid wrapperExpertDescri">
+                            <div class="pictureExpert ">
+                                {% if user.profilePicture is empty %}
+                                <img id='profil' src="https://i.postimg.cc/DwVVmnNH/clem-onojeghuo-w0-SREKRMh-Dk-unsplash.jpg"
+                                    alt="photo de profil">
+                                {% else %}
+                                <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}"
+                                    alt="photo de profil">
+                                {% endif %}
+                            </div>
+                            <div class="pl-3">
+                                {% if user.description is not empty %}
+                                <p> {{user.description}} </p>
+                                {% else %}
+                                 <h4>Bienvenue sur notre profil !</h4> <br> 
+                                 <p>Nous sommes disponibles par message pour répondre à toutes vos questions.
+                                    <br>A bientôt
+                                </p>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                {% if user.ebooks is not empty %}
+                <section class="mt-5" id="E-BOOKS">
+                    <div>
+                        <h2>E-BOOKS</h2>
+                        <hr class="hr-expert">
+                    </div>
+                    {% for ebook in user.ebooks %}
+                    {% include 'home/expert_ebook_table.html.twig'%}
+                    {% endfor %}
+                </section>
+                {% endif %}
+                <section id="CONTACTEZ NOUS" class="pt-5 mt-3 p-3">
+                    <hr class="hr-expert"><br>
+                    <div class="text-center pb-4">
+                        <h2>CONTACTEZ NOUS</h2>
+                    </div>
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-xs-12">
+                        {% if app.user is null %}
+                        <div class="text-center card-border p-3">
+                            <p>Vous souhaitez contacter cet expert ? <br>
+                                Inscrivez-vous ou connectez-vous pour pouvoir le contacter !</p>
+                            <div class="row justify-content-center">
+                                <div class="col-auto">
+                                    <a href="{{path('app_login')}}">
+                                        <button type="button" class="btn btn-connexion">Connexion</button>
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <a href="{{path('app_register_entrepreneur')}}">
+                                        <button type="button" class="btn btn-inscription">S'inscrire</button>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {% else %}
+                    {{ form_start(contactForm) }}
+                    <div class="row">
+                        <div class="col-12 pb-3">
+                            {{ form_row(contactForm.subject) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pb-3">
+                            {{ form_row(contactForm.message) }}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 pb-3">
+                            <small>* Champs obligatoires<br>
+                            </small>
+                        </div>
+                    </div>
+                    <div class="text-center my-4">
+                        <button class="btn btn-inscription" type="submit" id="submit-contact"
+                            data-sitekey="6LfJMCQaAAAAAJfXuLTH8XpIyUbYJiFE52pMX4hO"><i class="far fa-paper-plane"></i>
+                            {{
+                            button_label|default('Envoyer') }}</button>
+                    </div>
+                    {{ form_end(contactForm) }}
+                    {% endif %}
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-expert"><hr></div>
+{% endblock %}

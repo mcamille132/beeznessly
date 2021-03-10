@@ -1,0 +1,57 @@
+<div class="mt-2">
+    <h1 class="text-subnav"><span class="color-letter">G</span>estion de votre page expert</h1>
+</div>
+
+<div class="text-center">
+    {{ form_start(expertForm) }}
+    <div class="col mt-5">
+        {{ form_row(expertForm.description) }}
+    </div>
+    <div class="col">
+        {{ form_row(expertForm.expertise, {
+        "attr": {
+        'class': 'selectpicker',
+        'data-live-search': true,
+        'data-count-selected-text': '{0} sélectionnés',
+        'data-actions-box': true,
+        'title': 'Sélectionner'
+        }
+        }) }}
+    </div>
+    <div class="row">
+        <div class="col m-3">
+            {{ form_row(expertForm.logoFile) }}
+        </div>
+        <div class="col m-3">
+            {{ form_row(expertForm.bannerFile)}}
+        </div>
+    </div>
+
+    <button type="submit" class="btn btn-inscription nav-link mt-5">{{ button_label|default('Enregistrer')
+        }}</button>
+</div>
+<a href="{{ path('expert_expertPage')}}">
+    <button type="button" class="btn btn-inscription nav-link mt-5">Retour</button>
+</a>
+
+{{ form_widget(expertForm._token) }}
+{{ form_end(expertForm, {'render_rest': false}) }}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+    integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script>
+    $('.custom-file-input').on('change', function (event) {
+        var inputFile = event.currentTarget;
+        $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+    });
+</script>
+{% endblock javascripts %}

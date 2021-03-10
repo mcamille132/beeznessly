@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Ebooks {% endblock %}
+
+{% block body %}
+{{ include('entrepreneur/_navEntrepreneur.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="mt-4">
+    <h1><span class="color-letter">V</span>os ebooks</h1>
+  </div>
+  {% if downloads is not empty %}
+  <table class="table table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
+    <thead>
+    <tr>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">T</span>itre</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav d-none d-sm-block"><span class="color-letter">E</span>xpertise</h3>
+        </th>
+        <th colspan="2">
+          <h3> </h3>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for download in downloads|reverse %}
+      <tr>
+        <td>{{download.ebook.title}}</td>
+        <td class="d-none d-sm-block">{{download.ebook.expertise}} </td>
+        <td><button class="btn btn-connexion"><i class="fal fa-eye clickable" data-toggle="modal" data-target="#ebookModal-{{download.ebook.id}}"></i></button></td>
+        <td><a href="{{path ('ebook_download', {'id': download.ebook.id})}}"><button class="btn btn-inscription"><i class="fas fa-download"></i></a></button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="navigation">
+    {{ knp_pagination_render(downloads) }}
+  </div>
+  {% else %}
+  <p>Vous n'avez pas encore téléchargé de Ebook.</p>
+  <a href="{{path ('home_ebooks')}}">
+    <button type="button" class=" btn btn-inscription mr-2 mb-2"><i class="fas fa-download"></i> Télécharger un ebook</button>
+  </a>
+  {% endif %}
+</div>
+<div class="hr-expert mt-5"><hr></div>
+<!-- Modal -->
+{% for download in downloads %}
+<div class="modal fade" id="ebookModal-{{download.ebook.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{{download.ebook.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="color-expertise">{{download.ebook.expertise}}</h5>
+                <p>{{download.ebook.description}}</p>
+                <p class="text-muted text-right">Téléchargé le {{download.downloadedAt|date('d M Y')}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-connexion" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

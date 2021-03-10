@@ -1,0 +1,26 @@
+{# @var ea \EasyCorp\Bundle\EasyAdminBundle\Context\AdminContext #}
+{% extends '@EasyAdmin/page/content.html.twig' %}
+
+{% block page_title 'Admin' %}
+
+{% block page_content %}
+    <style>
+        p { max-width: 600px; }
+    </style>
+
+    <p>
+        <strong>Bienvenue sur l'admin de Beeznessly</strong>
+    </p>
+
+    <p>
+        En tant qu'administrateur, vous pouvez :
+        <ul>
+            <li>Modérer les nouveaux experts</li>
+            <li>Modérerles nouveaux ebook</li>
+            <li>Consulter vos messages "contact"</li>
+            <li>Définir et organiser les catégories du site, depuis l'onglet Gestion</li>
+            <li>Accéder aux informations générales sur les utilisateurs et les ebooks, depuis l'onglet Infos</li>     
+        </ul> 
+    </p>
+
+{% endblock %}

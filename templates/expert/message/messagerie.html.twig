@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Messages {% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="mt-4">
+    <h1><span class="color-letter">V</span>os messages</h1>
+  </div>
+  <table class="table table-hover table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
+    <thead>
+      <tr>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">D</span>e</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav d-none d-sm-block"><span class="color-letter">S</span>ujet</h3>
+        </th>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">D</span>ate</h3>
+        </th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for contact in contacts|reverse %}
+      <tr>
+        <td>{{contact.firstname}} {{contact.lastname}}</td>
+        <td class="d-none d-sm-block">{{contact.subject}} </td>
+        <td>{{contact.createdAt|date('d M Y')}} </td>
+        <td><a href="{{ path('expert_messagerie_show', {'id': contact.id}) }}"><button class="btn btn-inscription"><i
+                class="fal fa-eye"></i></button></a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="navigation text-right">
+    {{ knp_pagination_render(contacts) }}
+  </div>
+</div>
+<div class="hr-expert mt-5">
+  <hr>
+</div>
+{% endblock %}

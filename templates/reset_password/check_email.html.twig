@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Reinitialisation mot de passe{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <h1 class="color-connexion mb-3">Email de réinitialisation envoyé !</h1>
+                <p>Si vous disposez d'un compte asssocié à l'addresse email saisie, 
+                    un email contenant un lien pour réinitialiser votre mot de passe vous a été envoyé.
+                    Le lien expire dans 1 heure. </p>
+                <p>Si vous n'avez pas reçu cet email, vérifiez bien vos spams ou faites une <a
+                        href="{{ path('app_forgot_password_request') }}">nouvelle demande de réinitialisation</a>.</p>
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+</div>
+{% dump %}
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+{{ebook.title}},
+{{ebook.expertise}}
+{% endblock %}
+
+{% block metadescription %}
+Avec Beeznessly, téléchargez des livres blancs,
+trouvez et collaborez avec les meilleurs experts du digital.
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid subnav-bg">
+    <div class="row justify-content-around align-items-center">
+        <div class="text-center col-10 p-4">
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-5">
+    <div class="row">
+        <div class="col-md-2 pt-3">
+            <div class="filter d-none d-md-block">
+                <div>
+                    {% if ebook.user.logo is empty %}
+                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
+                        <p class="logo-default">LOGO</p>
+                        <img id='logo' src="https://i.postimg.cc/MG2dyGb2/logo-type.png" class="w-100"
+                            alt="logo de l'entreprise">
+                    </a>
+                    {% else %}
+                    <a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">
+                        <img id='logo' src="/uploads/logo/{{ ebook.user.logo }}" alt="logo de l'entreprise">
+                    </a>
+                    {% endif %}
+                </div>
+                <hr>
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+        <div class="col-md-9 mx-auto">
+            <div class="col-md-12">
+                <div>
+                    <h1 class="pt-3 name-expert-show"> {{ebook.title}}</h1>
+                    <hr class="hr-expert">
+                    <div class="row pl-2">
+                        <p class="pr-4"><i class="fas fa-check color-icon-blue"></i> {{ebook.expertise}}</p>
+                        <p><i class="far fa-user color-icon-blue"></i>
+                            Proposé par {{ebook.user}}</p>
+                    </div>
+                </div>
+                <section>
+                    <div>
+                        <div class="ebook mb-5">
+                            <div>
+                                <h2><a href="{{path ('home_expert_show', {'slug': ebook.user.slug})}}">Editeur : {{ebook.editorName}} </a></h2>
+                                <p>
+                                    {% if ebook.author is not null %}
+                                    Auteur : {{ebook.author}}
+                                    {% endif %}
+                                </p>
+                                <p>
+                                    <i class="far fa-calendar-alt color-icon-blue"></i>
+                                    Date de publication : {{ebook.releaseDate|date("d M Y")}}
+                                </p>
+                                <table class="table table-borderless table-responsive{-sm|-md|-lg|-xl}">
+                                    <tbody>
+                                        <tr>
+                                            <div class="text-center">
+                                                {% if ebook.illustration is empty %}
+                                                    <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                                    class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                                {% else %}
+                                                <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                                                    class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                                {% endif %}
+                                                <button type="button"
+                                                    class="btn btn-connexion d-lg-none d-md-none d-sm-none"
+                                                    data-toggle="modal" data-target="#exampleModalCenter">
+                                                    En savoir plus <i class="fas fa-arrow-right"></i>
+                                                </button>
+                                            </div>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <p class="d-none d-sm-block">{{ebook.description}}</p><br>
+                                                {% if ebook.documentEbook is not empty %}
+                                                <div class="text-center">
+                                                    <button type="button" class="btn btn-inscription btn-lg"
+                                                        data-toggle="modal"
+                                                        data-target="#modalRGPD">Télécharger</button>
+                                                </div>
+                                                {% endif %}
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-expert">
+    <hr>
+</div>
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalCenterTitle">{{ebook.title}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h5 class="color-expertise">{{ebook.expertise}}</h5>
+                <p>{{ebook.description}}</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-connexion" data-dismiss="modal">Fermer</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal pour les CGU / RGPD -->
+{% if app.user %}
+<div class="modal fade" id="modalRGPD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Conditions de téléchargement</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>En cliquant sur le bouton télécharger,
+                    vous acceptez que vos coordonnées soient communiquées à l'expert qui a publié cet ebook</p>
+                {{ form_start(rgpdForm)}}
+                {{ form_widget(rgpdForm) }}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
+                <a href="{{path ('ebook_download', {'id': ebook.id})}}">
+                    <button class="btn btn-inscription">{{ button_label|default('Télécharger') }}</button>
+                    {{ form_end(rgpdForm) }}
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}
+<div class="modal fade" id="modalRGPD" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Connectez-vous</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Vous êtes intéressé par cet ebook ? </br>
+                    Inscrivez-vous ou connectez-vous pour pouvoir le télécharger </p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{path('app_login')}}">
+                    <button type="button" class="btn btn-connexion ml-5">Connexion</button>
+                </a>
+                <a href="{{path('app_register_entrepreneur')}}">
+                    <button type="button" class="btn btn-inscription ml-5">S'inscrire</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

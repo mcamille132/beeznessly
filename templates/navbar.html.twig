@@ -1,0 +1,60 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-navbar">
+    <div class="container-fluid mt-2 mb-1 ml-lg-5 pl-lg-5 ml-md-0 pl-md-0">
+        <a class="navbar-brand mb-4" href="/">
+            <img src="{{ asset('build/images/logo-avec-baseline.png') }}" alt="Logo" width="170">
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-end" id="navbarSupportedContent">
+            <div class="row">
+                <div class="navbar-nav mx-auto my-auto mt-2 ml-5 pl-5 text-right">
+                    <div class="col-auto nav-item ml-lg-3 pl-lg-3 ml-md-0 pl-md-0">
+                        <a class="nav-link" href="{{ path('home_experts')}}">Consulter les experts</a>
+                    </div>
+                    <div class="col-auto nav-item ml-lg-1 pl-lg-0 ml-md-0 pl-md-0">
+                        <a class="nav-link" href="{{ path('home_ebooks')}}">Télécharger les Ebooks</a>
+                    </div>
+                    <div class="col-auto nav-item mr-lg-5 pr-lg-5 mr-md-0 pr-md-0 ml-lg-1 pl-lg-0 ml-md-0 pl-md-0">
+                        <a class="nav-link" href="{{ path('contact')}}">Contact</a>
+                    </div>
+                    <div class="col-auto nav-item ml-lg-3 pl-lg-3 ml-md-0 pl-md-0">
+                        {% if app.user is null %}
+                        <a href="{{path('app_register_expert')}}">
+                            <button type="button" class="btn btn-inscription">S'inscrire</button>
+                        </a>
+                        {% else %}
+                        {% if app.user.roles[0] == "ROLE_EXPERT" %}
+                        <a class="nav-link navbar-brand" href="{{path('expert_index')}}">
+                            <i class="fas fa-user-alt user-icon"></i>
+                        </a>
+                        {% endif %}
+                        {% if app.user.roles[0] == "ROLE_ENTREPRENEUR" %}
+                        <a class="nav-link navbar-brand" href="{{path('entrepreneur_index')}}">
+                            <i class="fas fa-user-alt user-icon"></i>
+                        </a>
+                        {% endif %}
+                        {% if app.user.roles[0] == "ROLE_ADMIN" %}
+                        <a class="nav-link navbar-brand" href="{{path('admin')}}">
+                            <i class="fas fa-user-alt user-icon"></i>
+                        </a>
+                        {% endif %}
+                        {% endif %}
+                    </div>
+                    <div class="col-auto nav-item ml-lg-3 pl-lg-3 ml-md-0 pl-md-0">
+                        {% if app.user is null %}
+                        <a href="{{path('app_login')}}">
+                            <button type="button" class="btn btn-connexion">Connexion</button>
+                        </a>
+                        {% else %}
+                        <a href="{{path('app_logout')}}">
+                            <button type="button" class="btn btn-connexion">Déconnexion</button>
+                        </a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>

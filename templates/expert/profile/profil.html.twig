@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mon profil {% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="mt-3">
+    <h2><span class="color-letter">I</span>nformation personnelles</h2>
+  </div>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{ user.firstname }}
+    </div>
+    <div class="card alert mb-3 rounded-pill" >
+      {{ user.lastname }}
+    </div>
+  </div>
+  <div class="card-deck">
+    <div class="card alert mb-3 rounded-pill">
+      {{ user.email }}
+    </div>
+    {% if user.phone is empty %}
+    {% else %}
+    <div class="card alert  mb-3 rounded-pill">
+      {{ user.phone }}
+    </div>
+    {% endif %}
+  </div>
+  {% if user.adress is empty %}
+    {% else %}
+  <div class="card alert rounded-pill">
+    {{ user.adress }}
+  </div>
+  {% endif %}
+  <div class="card-deck">
+    {% if user.zipcode is empty %}
+    {% else %}
+    <div class="card alert  mb-3 rounded-pill">
+      {{ user.zipcode }}
+    </div>
+    {% endif %}
+    {% if user.town is empty %}
+    {% else %}
+    <div class="alert card mb-3 rounded-pill">
+      {{ user.town }}
+    </div>
+    {% endif %}
+  </div>
+  <h2 class="mt-4"><span class="color-letter">V</span>otre Expertise</h2>
+  <div class="card alert rounded-pill">
+    {{ user.provider }}
+  </div>
+  <div class="card-deck">
+    {% if user.companyName is not empty %}
+    <div class="card mb-3 alert rounded-pill">
+      {{ user.companyName }}
+    </div>
+    {% endif %}
+    {% if user.siretNumber is empty %}
+    {% else %}
+    <div class="card mb-3 alert rounded-pill">
+      {{ user.siretNumber }}
+    </div>
+    {% endif %}
+  </div>
+  <a href="{{ path('expert_edit', {'id': user.id}) }}">
+    <button type="button" class="btn btn-inscription nav-link mt-3"><i class="far fa-edit"></i> Editer mon profil</button>
+  </a>
+</div>
+<div class="hr-expert mt-5"><hr></div>
+{% endblock %}

@@ -1,0 +1,8 @@
+<div class="picturePresta mt-5 d-none d-sm-block">
+    {% if user.profilePicture is empty %}
+    <img id='profil' src="https://i.postimg.cc/DwVVmnNH/clem-onojeghuo-w0-SREKRMh-Dk-unsplash.jpg"
+        alt="photo de profil">
+    {% else %}
+    <img id='profil' src="/uploads/profile_picture/{{ user.profilePicture }}" alt="photo de profil">
+    {% endif %}
+</div>

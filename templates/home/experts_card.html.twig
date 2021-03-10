@@ -1,0 +1,44 @@
+<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4 d-flex">
+    <div class="card-border">
+        <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show-img">
+            {% if expert.banner is empty %}
+                <img class="card-img-top" src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                    alt="Banner picture">
+            {% else %}
+            <img src="/uploads/banner/{{ expert.banner }}" class="card-img-top" alt="banner picture {{expert.companyName}}">
+            {% endif %}
+            <div class="text-right color-provider mr-3">
+                <button class="btn btn-sm border-pres pl-2 pr-2">
+                    <p class="pt-2 size-expertise">
+                        {{expert.provider}}
+                    </p>
+                </button>
+            </div>
+        </a>
+        <div class="card-body">
+            {% if expert.companyName is not empty %}
+            <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
+                <h2>
+                    {{expert.companyName}}
+                </h2>
+            </a>
+            {% else %}
+            <a href="{{path ('home_expert_show', {'slug': expert.slug})}}" class="link-for-show">
+                <h2>
+                    {{expert.firstname}} {{expert.lastname}}
+                </h2>
+            </a>
+            {% endif %}
+            {% if expert.town is not empty %}
+            <div class="text-left size-town">
+                <p><i class="fas fa-map-marker-alt color-icon-grey"></i> {{expert.town}}</p>
+            </div>
+            {% endif %}
+            {% for expertise in expert.expertise|slice(0, 3)%}
+            <p class="text-muted size-expertise">
+                <i class="fas fa-check color-expertise"></i> {{expertise.name}}
+            </p>
+            {% endfor %}
+        </div>
+    </div>
+</div>

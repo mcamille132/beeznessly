@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Page non trouvée{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <h1 class="color-connexion mb-3">Page non trouvée - Erreur 404</h1>
+                <p>Oups, nous n'avons pas pu trouver cette page ! </p>
+                <p>N'hésitez pas à <a href="{{ path('home_experts') }}">consulter les experts référencés</a> et <a href="{{ path('home_ebooks') }}">leurs ebooks</a>.</p>
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

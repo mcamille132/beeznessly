@@ -1,0 +1,58 @@
+{{ form_start(ebookForm) }}
+<div class="col mt-5">
+    {{ form_row(ebookForm.title) }}
+</div>
+<div class="col">
+    {{ form_row(ebookForm.description) }}
+</div>
+<div class="col">
+    {{ form_row(ebookForm.releaseDate) }}
+</div>
+<div class="row">
+    <div class="col m-3">
+        {{ form_row(ebookForm.editorName) }}
+    </div>
+    <div class="col m-3">
+        {{ form_row(ebookForm.author) }}
+    </div>
+</div>
+<div class="col">
+    {{ form_row(ebookForm.expertise) }}
+</div>
+<div class="row">
+    <div class="col m-3">
+        {{ form_row(ebookForm.illustrationFile) }}
+    </div>
+    <div class="col m-3">
+        {{ form_row(ebookForm.documentEbookFile) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-12 pb-3">
+        <small>* Champs obligatoires<br>
+        </small>
+    </div>
+</div>
+<button type="submit" class="btn btn-inscription mb-3"><i class="far fa-arrow-alt-circle-right"></i> {{
+    button_label|default('Save') }}</button>
+{{ form_widget(ebookForm._token) }}
+{{ form_end(ebookForm, {'render_rest': false}) }}
+
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js"
+    integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg=="
+    crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+    integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js"
+    integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh"
+    crossorigin="anonymous"></script>
+<script>
+    $('.custom-file-input').on('change', function (event) {
+        var inputFile = event.currentTarget;
+        $(inputFile).parent()
+            .find('.custom-file-label')
+            .html(inputFile.files[0].name);
+    });
+</script>
+{% endblock javascripts %}

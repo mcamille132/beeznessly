@@ -1,0 +1,176 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les meilleurs experts du digital pour votre projet web{% endblock %}
+
+{% block metadescription %}
+Recherchez et travaillez avec le meilleur expert du digital.
+Avec Beeznessly vous pouvez contacter les experts gratuitement, et même télécharger leurs livres blancs !
+SEO, SEA, Developpement web, communication, webmarketing: la plateforme vous propose toutes les expertises
+indispensables à votre projet web.
+{% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+    <div class="row color-bg-home justify-content-center align-items-center p-5">
+        <div class="col-xl-7 col-lg-7 col-md-4 ml-3 color-banner-home">
+            <h1 class="main-title-home">Le meilleur du digital accessible <br>pour les entrepreneurs</h1>
+            <h2 class="sub-title-home pt-3">Trouvez toutes les ressources pour vous accompagner dans votre projet</h2>
+        </div>
+        <div class="col-xl-3 col-lg-3 col-md-6">
+            <svg width="309" height="300" viewBox="0 0 309 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M191.507 29.3556L245.5 1.12841L299.493 29.3556V85.6444L245.5 113.872L191.507 85.6444V29.3556Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M84.5074 103.356L138.5 75.1284L192.493 103.356V159.644L138.5 187.872L84.5074 159.644V103.356Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M210.029 174.104L248 154.13L285.971 174.104V213.896L248 233.87L210.029 213.896V174.104Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M7.02886 202.104L45 182.13L82.9711 202.104V241.896L45 261.87L7.02886 241.896V202.104Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M108.971 263.09L159.5 235.143L210.029 263.09V318.91L159.5 346.857L108.971 318.91V263.09Z"
+                    stroke="#000000" stroke-width="2" />
+            </svg>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mb-5 p-5">
+    <div class="row pt-5 justify-content-center">
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-3 m-4">
+            <img src="https://i.postimg.cc/9fG9JFmt/inscription.png" alt="illustration inscription beeznessly"
+                class="img-fluid">
+            <h2><span class="color-number">1.</span> Inscrivez-vous</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-3 m-4">
+            <img src="https://i.postimg.cc/1t73KLqr/undraw-people-search-wctu.png" alt="illustration experts beeznessly"
+                class="img-fluid">
+            <h2><span class="color-number">2.</span> Trouvez les experts</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-12 col-xs-12 p-3 m-4">
+            <img src="https://i.postimg.cc/MHyK8XLd/undraw-Chatting-re-j55r.png" alt="illustration contact beeznessly"
+                class="img-fluid">
+            <h2><span class="color-number">3.</span> Entrez en contact</h2>
+            <p>It is a long established fact that a reader will be distracted by the readable content of a page when
+                looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution
+                of letters,</p>
+        </div>
+    </div>
+</div>
+<div class="container-fluid p-5 bg-home-ebook">
+    <div class="m-3">
+        <h2 class="text-center title-ebook-home">Découvrir les derniers <span class="color-number">E</span>books</h2>
+        <div class="row">
+            {% for ebook in ebooks %}
+            <div class="col-lg-3 col-md-6 col-sm-10 d-flex">
+                <div class="p-5">
+                    <div class="text-center">
+                        <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
+                            {% if ebook.illustration is empty %}
+                                <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                style="width: 13rem;"
+                                alt="{{ ebook.title }}">
+                            {% else %}
+                            <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;"
+                                alt="{{ ebook.title }}">
+                            {% endif %}
+                    </div>
+                    <div class="text-center">
+                        <h4>{{ebook.title}}</h4>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="text-center">
+            <a class="btn btn-inscription btn-lg" href="{{path('home_ebooks')}}" role="button">Tous les
+                ebooks</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid mt-5 mb-2 p-5">
+    <h2 class="text-center title-ebook-home pb-3">Les expertises</h2>
+    <div class="row justify-content-center m-4">
+        {% for expertise in expertises %}
+        <button class="btn btn-blue-more m-2 btn-lg">{{expertise.name}}</button>
+        {% endfor %}
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="m-5">
+        <div class="ml-lg-5 ml-sm-0 pl-1">
+            <h2 class="title-ebook-home">Rencontrez nos nouveaux experts</h2>
+            <div class="hr-expert">
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            {% for user in users %}
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-10 my-4 d-flex mx-auto">
+                <div>
+                    <a href="{{path ('home_expert_show', {'slug': user.slug})}}" class="link-for-show-img">
+                        {% if user.banner is empty %}
+                        <img class="card-img-top"
+                            src="https://i.postimg.cc/dtGF2hGw/you-x-ventures-Oalh2-Moj-Uuk-unsplash.jpg"
+                            alt="Banner picture">
+                        {% else %}
+                        <img src="/uploads/banner/{{ user.banner }}" class="card-img-top"
+                            alt="banner picture {{user.companyName}}">
+                        {% endif %}
+                        <div class="text-right color-provider">
+                            <div class="btn btn-sm border-pres pl-2 pr-2">
+                                {% if user.companyName is not empty %}
+                                <a href="{{path ('home_expert_show', {'slug': user.slug})}}" class="link-for-show">
+                                    <p>
+                                        {{user.companyName}}
+                                    </p>
+                                </a>
+                                {% else %}
+                                <a href="{{path ('home_expert_show', {'slug': user.slug})}}" class="link-for-show">
+                                    <p>
+                                        {{user.firstname}} {{user.lastname}}
+                                    </p>
+                                </a>
+                                {% endif %}
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-5">
+    <div class="row color-bg-home justify-content-center align-items-center p-5">
+        <div class="col-lg-7 col-md-4 ml-3 color-banner-home">
+            <h2 class="class="main-title-home"">Vous êtes un professionnel du digital ? <br>Accompagnez des entrepreneurs dans leur projet</h2>
+            </i>
+            <h2 class="sub-title-home"><i class="fas fa-arrow-right color-arrow"></i> Sélectionnez vos catégories
+                d’expertise</h2><br>
+            </i>
+            <h2 class="sub-title-home"><i class="fas fa-arrow-right color-arrow"></i> Proposez vos services, vos
+                formations et vos workshops</h2><br>
+            <h2 class="sub-title-home"><i class="fas fa-arrow-right color-arrow"></i> Prenez contact directement avec
+                les entrepreneurs</h2><br>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <svg width="309" height="300" viewBox="0 0 309 348" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M191.507 29.3556L245.5 1.12841L299.493 29.3556V85.6444L245.5 113.872L191.507 85.6444V29.3556Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M84.5074 103.356L138.5 75.1284L192.493 103.356V159.644L138.5 187.872L84.5074 159.644V103.356Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M210.029 174.104L248 154.13L285.971 174.104V213.896L248 233.87L210.029 213.896V174.104Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M7.02886 202.104L45 182.13L82.9711 202.104V241.896L45 261.87L7.02886 241.896V202.104Z"
+                    stroke="#000000" stroke-width="2" />
+                <path d="M108.971 263.09L159.5 235.143L210.029 263.09V318.91L159.5 346.857L108.971 318.91V263.09Z"
+                    stroke="#000000" stroke-width="2" />
+            </svg>
+        </div>
+    </div>
+</div>
+{% endblock %}

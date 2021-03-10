@@ -1,0 +1,73 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ebook{% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta text-center">
+    {{ include ('entrepreneur/picturePresta.html.twig')}}
+    <div class="col-md-12">
+        <div>
+            <h1 class="pt-3 name-expert-show"> {{ebook.title}}</h1>
+            <hr class="hr-expert">
+            <div class="row pl-2">
+            </div>
+        </div>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <h2>Editeur : {{ebook.editorName}}</h2>
+                        <p>
+                            {% if ebook.author is not null %}
+                            Auteur : {{ebook.author}}
+                            {% endif %}
+                        </p>
+                        <p class="pr-4"><i class="fas fa-check color-icon-blue"></i> {{ebook.expertise}}</p>
+                        <p>
+                            <i class="far fa-calendar-alt color-icon-blue"></i>
+                            Date de publication : {{ebook.releaseDate|date("d M Y")}}
+                        </p>
+                        <table class="table table-borderless table-responsive{-sm|-md|-lg|-xl}">
+                            <tbody>
+                                <tr>
+                                    <div class="text-center">
+                                        {% if ebook.illustration is empty %}
+                                            <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" 
+                                           class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% else %}
+                                        <img src="/uploads/illustrationEbook/{{ ebook.illustration }}"
+                                            class="card-img-top" style="width: 15rem;" alt="{{ ebook.title }}">
+                                        {% endif %}
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p>{{ebook.description}}</p><br>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div>
+                            <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}">
+                                <button type="button" class="btn btn-inscription mb-3"><i class="far fa-edit"></i>
+                                    Editer</button>
+                            </a>
+                            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}">
+                                <button type="button" class="btn btn-inscription mb-3"><i class="fal fa-eye"></i>
+                                    Voir ce Ebook</button>
+                            </a>
+                            <a href="{{ path('expert_ebook') }}">
+                                <button type="button" class="btn btn-inscription nav-link">Retour</button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-expert mt-5">
+    <hr>
+</div>
+{% endblock %}

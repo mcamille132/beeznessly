@@ -1,0 +1,37 @@
+<div class="col-xl-4 col-lg-6 col-md-6 col-sm-12 my-4 d-flex">
+    <div class="card border-light">
+        <div class="text-center">
+            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show-img">
+                {% if ebook.illustration is empty %}
+                    <img src="https://i.postimg.cc/7Ypq2c2h/livre-blanc-l-1-1-copie.png" style="width: 13rem;"
+                    alt="{{ ebook.illustration }}">
+                {% else %}
+                <img src="/uploads/illustrationEbook/{{ ebook.illustration }}" style="width: 13rem;"
+                    alt="{{ ebook.illustration }}">
+                    {% endif %}
+        </div>
+        <div class="text-center">
+            <button class="btn btn-sm border-pres pl-2 pr-2">
+                <p class="pt-2 size-expertise">
+                    {{ebook.expertise}}
+                </p>
+            </button>
+        </div>
+        </a>
+        <div class="card-body">
+            <a href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" class="link-for-show">
+                <h2>
+                    {{ebook.title}}
+                </h2>
+            </a>
+            <p class="color-editor size-expertise">Editeur {{ebook.editorName}}</p>
+            <p class="pt-1 size-expertise">
+                <i class="far fa-calendar-alt"></i> {{ebook.releaseDate|date('d M Y')}}
+            </p>
+            <div class="text-center">
+                <a class="btn btn-inscription" href="{{path ('home_ebook_show', {'slug': ebook.slug})}}" role="button">Voir
+                    +</a>
+            </div>
+        </div>
+    </div>
+</div>

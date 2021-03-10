@@ -1,0 +1,70 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Contact{% endblock %}
+
+{% block metadescription %}
+ Contactez l'équipe Beeznessly. Nous vous répondrons dans les plus brefs délais. 
+{% endblock %}
+
+{% block body %}
+<div class="hr-expert"><hr></div>
+<div class="container pt-5">
+    <div class="jumbotron m-5 color-contact-card">
+        <div id="flash_message" class="alert alert-danger d-none"></div>
+        {{ form_start(contactForm) }}
+        <h1 class="pb-4 pl-3"><span class="color-letter">C</span>ontactez l'équipe Beeznessly</h1>
+        <div class="row align-items-center justify-content-around">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.firstname) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.lastname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.companyName) }}
+                    </div>
+                    <div class="col-md-6 col-sm-12 pb-3">
+                        {{ form_row(contactForm.phoneNumber) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.email) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.subject) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        {{ form_row(contactForm.message) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3">
+                        <small>* Champs obligatoires<br>
+                            ** Format sans espaces, sans tirets
+                        </small>
+                    </div>
+                </div>
+                <div class="text-center my-4">
+                    <button class="btn btn-inscription" type="submit" id="submit-contact"
+                        data-sitekey="6LfJMCQaAAAAAJfXuLTH8XpIyUbYJiFE52pMX4hO"><i class="far fa-paper-plane"></i> {{
+                        button_label|default('Envoyer') }}</button>
+                </div>
+            </div>
+            {{ form_end(contactForm) }}
+            <div class="col-lg-3 col-md-4 col-sm-12">
+                <img src="https://i.postimg.cc/4NvZFydw/contact-4x.png" class="img-fluid" alt="Contact Beeznessly">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hr-expert"><hr></div>
+{% endblock %}

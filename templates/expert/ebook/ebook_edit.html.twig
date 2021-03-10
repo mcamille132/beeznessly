@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Ebook{% endblock %}
+
+{% block body %}
+<div class="container-fluid wrapperPresta text-center">
+    <h1>Edit Ebook</h1>
+    {{ include('expert/ebook/ebook_form.html.twig', {'button_label': 'Update'}) }}
+    <a href="{{ path('expert_ebook') }}">
+        <button type="button" class="btn btn-inscription nav-link">Retour</button>
+    </a>
+</div>
+<div class="hr-expert mt-5">
+    <hr>
+</div>
+{% endblock %}

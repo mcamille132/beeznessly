@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erreur serveur interne{% endblock %}
+
+{% block body %}
+<div class="container">
+    <div class="jumbotron m-5 color-inscription form-bg-login">
+        <div class="row justify-content-around align-items-center">
+            <div class="col-lg-7 col-md-7 col-xs-12 ml-3 color-banner-home">
+                <h1 class="color-connexion mb-3">Erreur 500</h1>
+                <p>Oups, le serveur a rencontré une erreur interne qui l’a empêché de satisfaire la requête.</p>
+            </div>
+            <div class="col-lg-3 col-md-4 d-none d-sm-block text-center">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

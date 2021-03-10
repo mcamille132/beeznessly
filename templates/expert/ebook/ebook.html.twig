@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mes Ebooks {% endblock %}
+
+{% block body %}
+{{ include('expert/navExpert.html.twig') }}
+<div class="container-fluid wrapperPresta">
+  {{ include ('entrepreneur/picturePresta.html.twig')}}
+  <div class="mt-4">
+    <h1><span class="color-letter">V</span>os ebooks</h1>
+  </div>
+  <table class="table table-borderless table-striped table-light table-responsive{-sm|-md|-lg|-xl} mt-5">
+    <thead>
+      <tr>
+        <th>
+          <h3 class="text-subnav"><span class="color-letter">T</span>itre</h3>
+        </th>
+        <th class="d-none d-sm-block">
+          <h3 class="text-subnav"><span class="color-letter">E</span>xpertise</h3>
+        </th>
+        <th>
+        </th>
+        <th>
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ebook in ebooks %}
+      <tr>
+        <td>
+          <p>{{ebook.title}}</p>
+          {% if ebook.isValidated == true %}
+          <p class="d-none d-md-block"><i class="fas fa-check-square color-letter"></i> Validé</p>
+          {% else %}
+          <p><i class="fas fa-sync-alt color-letter d-none d-md-block"></i> En cours de validation</p>
+          {% endif %}
+        </td>
+        <td class="d-none d-sm-block">
+          <p>{{ebook.expertise}}</p>
+        </td>
+        <td><button class="btn btn-inscription"><a href="{{ path('expert_ebook_download_show', {'id': ebook.id}) }}">
+              {{nbDownloadByEbook[ebook.id]}} téléchargement(s) <i class="fas fa-arrow-circle-right"></i></button>
+        </td>
+        <td>
+          <a href="{{ path('expert_ebook_show', {'id': ebook.id}) }}">
+            <button class="btn btn-connexion"><i class="fal fa-eye "></i></button>
+            <br>
+            <a href="{{ path('expert_ebook_edit', {'id': ebook.id}) }}">
+              <button class="btn btn-inscription mt-2"><i class="far fa-edit"></i></button>
+            </a>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <div class="navigation">
+    {{ knp_pagination_render(ebooks) }}
+  </div>
+  <a href="{{ path('expert_ebook_new')}}">
+    <button type="button" class="btn btn-inscription nav-link mt-5"><i class="fas fa-plus"></i> Ajouter un nouveau
+      ebook</button>
+  </a>
+</div>
+<div class="hr-expert mt-5">
+  <hr>
+</div>
+{% endblock %}

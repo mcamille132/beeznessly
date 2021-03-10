@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Inscription Expert Digital{% endblock %}
+
+{% block body %}
+
+<div class="container-fluid">
+    <div class="row align-items-center">
+        <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+            <div class="jumbotron m-5 color-inscription form-bg-login">
+                {% for flashError in app.flashes('verify_email_error') %}
+                <div class="alert alert-danger" role="alert">{{ flashError }}</div>
+                {% endfor %}
+                <h1 class="color-connexion">Inscription</h1>
+                <ul class="nav nav-tabs my-4">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="{{ path('app_register_expert')}}">Expert</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ path('app_register_entrepreneur')}}">Entrepreneur</a>
+                    </li>
+                </ul>
+                {{ form_start(registrationForm) }}
+                <h4 class="color-connexion mt-4"><span class="color-letter">1.</span> Informations personnelles</h4>
+                <div class="row">
+                    <div class="col-6">
+                        {{ form_row(registrationForm.firstname) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(registrationForm.lastname) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-6">
+                        {{ form_row(registrationForm.email) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(registrationForm.phone) }}
+                    </div>
+                </div>
+                {{ form_row(registrationForm.adress) }}
+                <div class="row">
+                    <div class="col-6">
+                        {{ form_row(registrationForm.zipcode) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(registrationForm.town) }}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 pb-3 text-right">
+                      <p>* Champs obligatoires</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 d-none d-md-block">
+            <img src="https://i.postimg.cc/L5ydgXTB/undraw-Hire-re-gn5j-2.png" class="img-fluid">
+        </div>
+    </div>
+    <div class="jumbotron ml-5 mr-5 color-connexion color-inscription form-bg-login">
+        <div class="row align-items-center justify-content-around">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+                <h4 class="color-connexion"><span class="color-letter">2.</span> A propos de votre expertise
+                </h4>
+                <div class="row">
+                    <div class="col-6">
+                        {{ form_row(registrationForm.provider) }}
+                    </div>
+                    <div class="col-6">
+                        {{ form_row(registrationForm.siretNumber) }}
+                    </div>
+                </div>
+            <p>Nom de votre entreprise</p>
+            {{ form_row(registrationForm.companyName) }}
+                <p>Domaine(s) d'expertise(s) </p>
+                    {{ form_row(registrationForm.expertise, {
+                        "attr": {
+                            'class': 'selectpicker',
+						    'data-live-search': true,
+						    'data-count-selected-text': '{0} sélectionnés',
+						    'data-actions-box': true,
+						    'title': 'Sélectionner'
+                        }
+                    }) }}
+            </div>
+            <div class="col-4 d-none d-md-block">
+                {% include 'design_form_yellow.html.twig'%}
+            </div>
+        </div>
+    </div>
+    <div class="jumbotron m-5 color-inscription form-bg-login color-connexion">
+            <h4 class="color-connexion mt-2"><span class="color-letter">3.</span> Dernière étape !</h4>
+        <div class="row">
+            <div class="col-xl-8 col-lg-8 col-md-12 col-xs-12">
+                {{ form_row(registrationForm.plainPassword) }}
+                {{ form_row(registrationForm.agreeTerms) }}
+            </div>
+        </div>
+            <div class="text-center">
+                <button type="submit" class="btn btn-inscription">S'inscrire</button>
+            </div>
+            {{ form_widget(registrationForm._token) }}
+            {{ form_end(registrationForm, {'render_rest': false}) }}
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block javascripts %}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.13.18/js/bootstrap-select.min.js" integrity="sha512-yDlE7vpGDP7o2eftkCiPZ+yuUyEcaBwoJoIhdXv71KZWugFqEphIS3PU60lEkFaz8RxaVsMpSvQxMBaKVwA5xg==" crossorigin="anonymous"></script>
+{% endblock %}
